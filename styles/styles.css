@@ -55,6 +55,9 @@ body {
 {
 	display: flex;
 	justify-content: flex-end;
+	background-color: #3e3a3a78;
+	border-radius: 10px 10px 0 0;
+	padding: 20px;
 }
 
 #auth
@@ -66,12 +69,6 @@ body {
 
 #main {
 	flex: 1;
-	padding: 20px;
-}
-
-#footer {
-	background-color: #3e3a3a78;
-	border-radius: 10px 10px 0 0;
 	padding: 20px;
 }
 
@@ -107,7 +104,7 @@ width: 100px;
 }
 
 
-#main p
+.menu_item p
 {
 	text-decoration: none;
 	font-family: "Open Sans", "Helvetica Neue", Verdana, Arial, sans-serif;
@@ -251,26 +248,182 @@ width: 100px;
 	margin: 5px;
 }
 
+#photo_section
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#camera
+{
+	width: 90%;
+	margin-top: 20px;
+	height: 500px;
+	background-color: red;
+}
+
+#previev_section
+{
+	width: 90%;
+	margin-top: 20px;
+	display: flex;
+	flex-direction: row;
+}
+
+#previev
+{
+	height: 200px;
+	width: 200px;
+	background-color: green;
+}
+
+#previev_section button
+{
+	margin-top: 10px;
+    width: 120px;
+    height: 50px;
+    font: 20px sans-serif;
+    color: #101010;
+    border-radius: 5px;
+    align-self: center;
+}
+
+#previev_btn
+{
+	display: flex;
+	flex-direction: column;
+	margin-left: 40px;
+}
+
+#filter_section
+{
+	padding: 10px;
+}
+
+#filter_section img
+{
+	width: 28%;
+	padding: 5px;
+}
+
+.selected_filter
+{
+	box-shadow: 0 0 10px #65a061fa;
+}
+
+.photo
+{
+	height:200px;
+	width: 200px;
+	min-width: 200px;
+	background-color: grey;
+}
+
+.like_btn
+{
+	position: relative;
+    top: 160px;
+    left: 155px;
+    font-size: 30px;
+    color: red;
+}
+
+.g_item
+{
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 30px;
+}
+
+.g_item button
+{
+	font: 20px sans-serif;
+    color: grey;
+    border-radius: 5px;
+    align-self: center;
+}
 
 
+.galery
+{
+	width: 80%;
+    margin: 0 auto;
+}
 
+.coments_wrap
+{
+	width: 70%;
+	margin-left: 10px;
+}
 
+.comments
+{
+	margin-bottom: 5px;
+	overflow: hidden;
+    max-height: 204px;
+	transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
+}
 
+.comment
+{
+	/*border: 1px solid grey;*/
+	margin-bottom: 5px;
+}
 
+.c_deployed
+{
+	max-height: none;
+}
 
+.c_input
+{
+	display: flex;
+	margin-top: 5px;
+	/*border:solid 1px grey;*/
+}
 
+.i_deployed
+{
+	display: none;
+}
 
+.c_input textarea
+{
+	width: 60%
+}
 
+.c_input button
+{
+	margin-left: 10px;
+}
 
+.pagination
+{
+	display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
 
+.pagination a
+{
+	font: 21px/30px FontAwesome;
+    /*opacity: 0.5;*/
+    /*cursor: default;*/
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-
-
-
-
-
-
-
+.author
+{
+	font: 16px sans-serif;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
 
 
 

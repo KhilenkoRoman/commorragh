@@ -1,5 +1,7 @@
 function startup() {
 
+	var camera = document.getElementById('camera');
+
 	navigator.getUserMedia = navigator.getUserMedia ||
 		navigator.webkitGetUserMedia ||
 		navigator.mozGetUserMedia;
@@ -9,7 +11,10 @@ function startup() {
 		audio: false
 	}, function (stream)
 	{
-		console.log(stream);
+		window.URL = window.URL || window.webkitURL;
+		var streamURL = window.URL.createObjectURL(stream);
+		camera.src = streamURL;
+		camera.play();
 	}
 	, function (error)
 	{
