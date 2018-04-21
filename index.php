@@ -6,9 +6,53 @@ session_start();
 	<title>Commorragh</title>
 	<meta charset="utf-8">
     <link href="styles/styles.css" rel="stylesheet">
+    <script src="script.js"></script>
 
 </head>
 <body>
-<p>asd</p>
+<div id="header">
+	<div id="header_wrap">
+		<a href="index.php"><h1>Commorragh</h1></a>
+		<div id="auth">
+			<a href=""><div>Signn in</div></a>
+			<a href="register.php" style="margin-left: 25px;"><div>Register</div></a>
+		</div>
+	</div>
+</div>
+<div id="main">
+	<div id="index_wrap">
+	<a href="register.php">
+	<div class="menu_item">
+		<div class="line"></div>
+		<p>Register</p>
+		<div class="line"></div>
+	</div>
+	</a>
+	<a href="">
+	<div class="menu_item">
+		<div class="line"></div>
+		<p>Sign in</p>
+		<div class="line"></div>
+	</div>
+	</a>
+	<a href="">
+	<div class="menu_item">
+		<div class="line"></div>
+		<p>Take photo</p>
+		<div class="line"></div>
+	</div>
+	</a>
+	<a href="">
+	<div class="menu_item">
+		<div class="line"></div>
+		<p>Galery</p>
+		<div class="line"></div>
+	</div>
+	</a>
+	</div>
+</div>
+<div id="footer">
+	<p>&#169 rkhilenk 2018</p>
+</div>
 </body>
 </html>

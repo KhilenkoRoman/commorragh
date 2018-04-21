@@ -14,13 +14,13 @@ catch (Exception $e) {
     die('Error : ' . $e->getMessage());
 }
 
-try {
-	$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+try {
 	$sql = "CREATE TABLE IF NOT EXISTS users (
 	id_user INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	email VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
 	password VARCHAR(130) NOT NULL,
 	name VARCHAR(30) NOT NULL,
 	date_creation TIMESTAMP,
@@ -41,9 +41,6 @@ catch (PDOException $e) {
 }
 
 try {
-  // $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	$sql = "CREATE TABLE IF NOT EXISTS pictures (
 	id_pic INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	id_user INT UNSIGNED NOT NULL,
@@ -58,9 +55,6 @@ catch (PDOException $e) {
 }
 
 try {
-  // $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	$sql = "CREATE TABLE IF NOT EXISTS likes (
 	id_like INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	id_pic INT UNSIGNED NOT NULL,
@@ -76,9 +70,6 @@ catch (PDOException $e) {
 }
 
 try {
-  // $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-  // $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
 	$sql = "CREATE TABLE IF NOT EXISTS comments (
 	id_comment INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	id_pic INT UNSIGNED NOT NULL,

@@ -1,9 +1,6 @@
 <?php
-session_start();
 require_once('../config/dbconnect.php');
 require_once('mail.php');
-
-
 
 if (!$_SERVER['REQUEST_METHOD'] === 'POST')
 {
@@ -39,7 +36,7 @@ if(preg_match($regex, $_POST[email]))
 else
 {
 	echo ("wrong_email");
-	return (0);
+	return;
 }
 
 $name = htmlspecialchars($_POST['name']);
@@ -50,12 +47,8 @@ $token = md5($email.time());
 $message = "Tnx for registrarion <br><br> To activate your account go to <br><br> http://localhost:8080/commorragh/activate.php?email=".$email."&token=".$token;
 ft_send_email($_POST[email], 'Cammorragh registration', $message);
 
-
-
 $sql = "INSERT INTO users (email, name, password, token)
 VALUES ('$email', '$name', '$password', '$token')";
 $result = sql_send($sql);
 echo "$result";
-
-
 ?>
