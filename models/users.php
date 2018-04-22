@@ -11,6 +11,16 @@ function get_user($email)
 		return false;
 }
 
+function get_user_by_id($id)
+{
+	$sql = "SELECT * FROM users WHERE id_user='$id'";
+	$result = sql_req($sql);
+	if (count($result) == 1)
+		return ($result[0]);
+	else
+		return false;
+}
+
 function activate_user($email)
 {
 	$sql = "UPDATE users SET active = 1, token = NULL WHERE email='$email'";

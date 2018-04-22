@@ -1,5 +1,4 @@
 <?php
-session_start();
 ?>
 <html>
 <head>
@@ -10,38 +9,38 @@ session_start();
 
 </head>
 <body>
-<div id="header">
-	<div id="header_wrap">
-		<a href="index.php"><h1>Commorragh</h1></a>
-		<div id="auth">
-			<a href=""><div>Signn in</div></a>
-			<a href="register.php" style="margin-left: 25px;"><div>Register</div></a>
-		</div>
-	</div>
-</div>
+<?php include("header.php");?>
 <div id="main">
 	<div id="index_wrap">
-	<a href="register.php">
+
+	<?php if (!$_SESSION["logged_in_user"]): ?>
+
+	<a href="./register.php">
 	<div class="menu_item">
 		<div class="line"></div>
 		<p>Register</p>
 		<div class="line"></div>
 	</div>
 	</a>
-	<a href="">
+	<a href="./sign_in.php">
 	<div class="menu_item">
 		<div class="line"></div>
 		<p>Sign in</p>
 		<div class="line"></div>
 	</div>
 	</a>
-	<a href="">
+
+	<?php else : ?>
+
+	<a href="./photo.php">
 	<div class="menu_item">
 		<div class="line"></div>
 		<p>Take photo</p>
 		<div class="line"></div>
 	</div>
 	</a>
+
+	<?php endif; ?>
 	<a href="">
 	<div class="menu_item">
 		<div class="line"></div>
@@ -51,8 +50,8 @@ session_start();
 	</a>
 	</div>
 </div>
-<div id="footer">
-	<p>&#169 rkhilenk 2018</p>
+
+<?php include("footer.php");?>
 </div>
 </body>
 </html>

@@ -42,15 +42,7 @@ else
 
 </head>
 <body>
-<div id="header">
-	<div id="header_wrap">
-		<a href=""><h1>Commorragh</h1></a>
-		<div id="auth">
-			<a href=""><div>Signn in</div></a>
-			<a href="" style="margin-left: 25px;"><div>Register</div></a>
-		</div>
-	</div>
-</div>
+<?php include("header.php");?>
 
 <!-- main -->
 <div id="main">
@@ -60,8 +52,7 @@ else
 </div>
 <!-- main end -->
 
-<div id="footer">
-	<p>&#169 rkhilenk 2018</p>
+<?php include("footer.php");?>
 </div>
 <script src="auth.js"></script>
 </body>

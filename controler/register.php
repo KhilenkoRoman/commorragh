@@ -20,7 +20,7 @@ if(strlen($_POST['pwd']) < 6)
 }
 
 $regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
-if(preg_match($regex, $_POST[email]))
+if(preg_match($regex, strtolower($_POST[email])))
 {
 	$sql = "SELECT email FROM users";
 	$result = sql_req($sql);

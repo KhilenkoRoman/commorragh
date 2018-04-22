@@ -257,10 +257,11 @@ width: 100px;
 
 #camera
 {
-	width: 90%;
-	margin-top: 20px;
-	height: 500px;
-	background-color: red;
+    width: 90%;
+    margin-top: 20px;
+    /* height: 500px; */
+    background-color: grey;
+    border-radius: 7px;
 }
 
 #previev_section
@@ -271,12 +272,26 @@ width: 100px;
 	flex-direction: row;
 }
 
-#previev
+#camera
 {
-	height: 200px;
-	width: 200px;
-	background-color: green;
+	width: 32vmin;
+	height: 24vmin;
 }
+
+#overlay
+{
+	width: 32vmin;
+	height: 24vmin;
+	position: absolute;
+	margin-top: 20px;
+}
+
+#canvas
+{
+	width: 32vmin;
+	height: 24vmin;
+}
+
 
 #previev_section button
 {
@@ -305,6 +320,7 @@ width: 100px;
 {
 	width: 28%;
 	padding: 5px;
+	max-width: 220px;
 }
 
 .selected_filter

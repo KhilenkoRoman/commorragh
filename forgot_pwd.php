@@ -10,15 +10,7 @@
 
 </head>
 <body>
-<div id="header">
-	<div id="header_wrap">
-		<a href=""><h1>Commorragh</h1></a>
-		<div id="auth">
-			<a href=""><div>Signn in</div></a>
-			<a href="" style="margin-left: 25px;"><div>Register</div></a>
-		</div>
-	</div>
-</div>
+<?php include("header.php");?>
 
 <!-- main -->
 <div id="main">
@@ -28,14 +20,13 @@
 			<div><input id="f_email_inp" type="email" name="email" placeholder="Email" required></div>
 			<p id="email_error" class="none">wrong email</p>
 			<button style="width: 200px" type="submit" id="register_btm">Send confirmation</button>
-			<a href="index.php">Remembered ?</a>
+			<a href="./sign_in.php">Remembered ?</a>
 		</form>
 	</div>
 </div>
 <!-- main end -->
 
-<div id="footer">
-	<p>&#169 rkhilenk 2018</p>
+<?php include("footer.php");?>
 </div>
 <script src="auth.js"></script>
 </body>
