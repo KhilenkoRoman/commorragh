@@ -14,13 +14,16 @@
 <div id="photo_wrap">
 	<div id="photo_section">
 		<div id="camera_wrap">
-			<img id="overlay" src="./img/1.png"></video>
-			<video id="camera" width="640" height="480">
+			<img id="overlay" src="./img/1.png">
+			<video id="player" width="640" height="480" video id="" autoplay></video>
+			<canvas id="canvas" width="640" height="480"></canvas>
 		</div>
+		<input type="file" accept="image/*" id="file_input">
+		<div id="target">You can drag an image file here</div>
 			<div id="previev_section">
-				<canvas id="canvas"  width="320" height="240"></canvas>
+				<canvas id="previev"  width="320" height="240"></canvas>
 				<div id="previev_btn">
-					<button id="take_picture_btn">Take photo</button>
+					<button id="capture">Take photo</button>
 					<button id="save_picture_btn">Save photo</button>
 				</div>
 			</div>

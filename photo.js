@@ -1,44 +1,105 @@
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-var camera = document.getElementById('camera');
+
+const fileInput = document.getElementById('file_input');
+const target = document.getElementById('target');
+const player = document.getElementById('player');
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+context.translate(640, 0);
+context.scale(-1, 1);
+const captureButton = document.getElementById('capture');
 
 
-function startup() {
-	navigator.getUserMedia = navigator.getUserMedia ||
-		navigator.webkitGetUserMedia ||
-		navigator.mozGetUserMedia;
+// video player
 
-	navigator.getUserMedia({
-		video: true,
-		audio: false
-	}, function (stream)
-	{
-		window.URL = window.URL || window.webkitURL;
-		var streamURL = window.URL.createObjectURL(stream);
-		camera.src = streamURL;
-		camera.play();
-	}
-	, function (error)
-	{
-		console.warn(error);
-	});
-}
+navigator.getUserMedia({video: true, audio: false}, getVideo, videoError);
 
-function takePhoto()
+function getVideo(stream)
 {
-	context.drawImage(camera, 0, 0, 320, 240);
-
-	var dataUrl = canvas.toDataURL()
-	// var	context = previev.getContext('2d');
-	// context.drawImage(camera, 0, 0, camera.width, camera.height);
-
-	// var imageURL = previev.toDataURL();
-	// var img = document.getElementById('image');
-	// img.setAttribute('src', imageURL);
+	player.srcObject = stream;
 }
 
-document.getElementById("take_picture_btn").addEventListener("click", takePhoto);
+function videoError(error)
+{
+	console.warn(error);
+}
+
+// video player end
+
+//image from webcam
+
+captureButton.addEventListener("click", capture);
+
+function capture()
+{
+	// event.preventDefault();
+
+	context.drawImage(player, 0, 0, 640, 480);
+	var image = canvas.toDataURL("image/png");
+
+	var xmlhttp = new XMLHttpRequest();
+	var response = xmlhttp.responseText;
+	
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			var response = xmlhttp.responseText;
+			console.log(response);		
+        }
+	};
+
+	xmlhttp.open("POST", "controler/photo.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("photo=" + image);
+}
+
+//image from webcam end
 
 
 
-window.addEventListener('load', startup);
+function file_handler(fileList)
+{
+	if (fileList[0].type.match(/^image\//) && fileList[0].size < 10000000)
+	{
+	if (fileList[0] !== null)
+	{
+		console.log(fileList[0]);
+		console.log("picture_loaded");
+		// canvas.src = URL.createObjectURL(fileList[0]);
+    }
+	}
+}
+
+// drag and drop
+target.addEventListener('drop', (e) => {
+e.stopPropagation();
+e.preventDefault();
+file_handler(e.dataTransfer.files);
+});
+
+target.addEventListener('dragover', (e) => {
+e.stopPropagation();
+e.preventDefault();
+e.dataTransfer.dropEffect = 'copy';
+});
+// drag and drop end
+
+// file upload
+fileInput.addEventListener('change', (e) => file_handler(e.target.files));
+// file upload end
+
+
+// window.addEventListener('load', startup);
+
+
+
+
+
+
+
+
+
+
+
+
+

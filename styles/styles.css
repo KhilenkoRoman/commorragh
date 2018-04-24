@@ -255,13 +255,14 @@ width: 100px;
 	align-items: center;
 }
 
-#camera
+#player
 {
-    width: 90%;
+	width: 32vmin;
+	height: 24vmin;
     margin-top: 20px;
-    /* height: 500px; */
     background-color: grey;
     border-radius: 7px;
+    transform: scaleX(-1);
 }
 
 #previev_section
@@ -272,24 +273,18 @@ width: 100px;
 	flex-direction: row;
 }
 
-#camera
-{
-	width: 32vmin;
-	height: 24vmin;
-}
-
 #overlay
 {
 	width: 32vmin;
 	height: 24vmin;
 	position: absolute;
 	margin-top: 20px;
+	z-index: 1;
 }
 
 #canvas
 {
-	width: 32vmin;
-	height: 24vmin;
+	display: none;
 }
 
 
