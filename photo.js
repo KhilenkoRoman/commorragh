@@ -7,6 +7,12 @@ const context = canvas.getContext('2d');
 context.translate(640, 0);
 context.scale(-1, 1);
 const captureButton = document.getElementById('capture');
+const saveButton = document.getElementById('save_picture_btn');
+const filters = document.querySelectorAll('.filter');
+const overlay = document.getElementById('overlay');
+const previevImg = document.getElementById('previev_img');
+const user_id = document.getElementById('user_id').innerHTML;
+
 
 
 // video player
@@ -44,33 +50,99 @@ function capture()
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 		{
 			var response = xmlhttp.responseText;
-			console.log(response);		
+			// console.log(response);
+			previevImg.src = response;
+			saveButton.disabled = false;
+			saveButton.classList.remove('disabled');
         }
 	};
-
 	xmlhttp.open("POST", "controler/photo.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	xmlhttp.send("photo=" + image);
+	xmlhttp.send("overlay=" + overlay.src + "&photo=" + image);
 }
 
 //image from webcam end
-
-
 
 function file_handler(fileList)
 {
 	if (fileList[0].type.match(/^image\//) && fileList[0].size < 10000000)
 	{
-	if (fileList[0] !== null)
-	{
+		if (fileList[0] !== null)
+		{
 		console.log(fileList[0]);
 		console.log("picture_loaded");
-		// canvas.src = URL.createObjectURL(fileList[0]);
-    }
+
+		var file = fileList[0];
+		if(file.type !== '' && !file.type.match('image.*'))
+        {
+        	alert("not an image");
+            return;
+        }
+        window.URL = window.URL || window.webkitURL;
+        var imageURL = window.URL.createObjectURL(file);
+        console.log(imageURL);
+        previevImg.src = imageURL;      
+		context.drawImage(previevImg, 0, 0, 640, 480);
+   		}
 	}
 }
 
+
+
+function filter_handler()
+{
+	if (this.classList.contains('selected_filter'))
+	{
+		this.classList.remove('selected_filter');
+		overlay.classList.add('none');
+		captureButton.disabled = true;
+		captureButton.classList.add('disabled');
+
+	}		
+	else
+	{
+		filters.forEach(function(elem) {
+    		elem.classList.remove('selected_filter');
+		});
+		this.classList.add('selected_filter');
+		overlay.classList.remove('none');
+		overlay.src = this.src;
+		captureButton.disabled = false;
+		captureButton.classList.remove('disabled');
+	}
+}
+
+saveButton.addEventListener("click", photo_saver);
+
+function photo_saver()
+{
+	var xmlhttp = new XMLHttpRequest();
+	var response = xmlhttp.responseText;
+	
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			var response = xmlhttp.responseText;
+			if (response == '1')
+			{
+				previevImg.removeAttribute("src");
+				saveButton.disabled = true;
+				saveButton.classList.add('disabled');
+			}
+			else
+				alert(response);
+        }
+	};
+	xmlhttp.open("POST", "controler/save_photo.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("id_user=" + user_id + "&pic=" + previevImg.src);
+}
+
+
+
 // drag and drop
+
 target.addEventListener('drop', (e) => {
 e.stopPropagation();
 e.preventDefault();
@@ -88,6 +160,10 @@ e.dataTransfer.dropEffect = 'copy';
 fileInput.addEventListener('change', (e) => file_handler(e.target.files));
 // file upload end
 
+filters.forEach(function(elem) {
+    elem.addEventListener('click', filter_handler);
+});
+// filters.addEventListener('click', filter_handler());
 
 // window.addEventListener('load', startup);
 

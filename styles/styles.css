@@ -257,8 +257,8 @@ width: 100px;
 
 #player
 {
-	width: 32vmin;
-	height: 24vmin;
+	width: 64vmin;
+	height: 48vmin;
     margin-top: 20px;
     background-color: grey;
     border-radius: 7px;
@@ -275,8 +275,8 @@ width: 100px;
 
 #overlay
 {
-	width: 32vmin;
-	height: 24vmin;
+	width: 64vmin;
+	height: 48vmin;
 	position: absolute;
 	margin-top: 20px;
 	z-index: 1;
@@ -441,4 +441,7 @@ width: 100px;
 	display: none;
 }
 
-
+.disabled
+{
+	opacity: 0.5;
+}
