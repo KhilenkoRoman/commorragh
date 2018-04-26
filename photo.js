@@ -2,6 +2,7 @@
 const fileInput = document.getElementById('file_input');
 const target = document.getElementById('target');
 const player = document.getElementById('player');
+const downloaded_img = document.getElementById('downloaded_img');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 context.translate(640, 0);
@@ -12,8 +13,9 @@ const filters = document.querySelectorAll('.filter');
 const overlay = document.getElementById('overlay');
 const previevImg = document.getElementById('previev_img');
 const user_id = document.getElementById('user_id').innerHTML;
-
-
+var is_video = false;
+var is_downloaded = false;
+const previev_txt = document.getElementById('previev_txt');
 
 // video player
 
@@ -21,12 +23,15 @@ navigator.getUserMedia({video: true, audio: false}, getVideo, videoError);
 
 function getVideo(stream)
 {
+	is_video = true;
 	player.srcObject = stream;
 }
 
 function videoError(error)
 {
-	console.warn(error);
+	is_video = false;
+	player.classList.add('none');
+	target.classList.remove('none');
 }
 
 // video player end
@@ -38,8 +43,12 @@ captureButton.addEventListener("click", capture);
 function capture()
 {
 	// event.preventDefault();
+	if (is_video)
+		context.drawImage(player, 0, 0, 640, 480);
+	else
+		context.drawImage(downloaded_img, 0, 0, 640, 480);
 
-	context.drawImage(player, 0, 0, 640, 480);
+
 	var image = canvas.toDataURL("image/png");
 
 	var xmlhttp = new XMLHttpRequest();
@@ -52,8 +61,10 @@ function capture()
 			var response = xmlhttp.responseText;
 			// console.log(response);
 			previevImg.src = response;
+			previevImg.classList.remove('none');
 			saveButton.disabled = false;
 			saveButton.classList.remove('disabled');
+			previev_txt.classList.add("none");
         }
 	};
 	xmlhttp.open("POST", "controler/photo.php", true);
@@ -69,8 +80,8 @@ function file_handler(fileList)
 	{
 		if (fileList[0] !== null)
 		{
-		console.log(fileList[0]);
-		console.log("picture_loaded");
+		// console.log(fileList[0]);
+		// console.log("picture_loaded");
 
 		var file = fileList[0];
 		if(file.type !== '' && !file.type.match('image.*'))
@@ -80,9 +91,13 @@ function file_handler(fileList)
         }
         window.URL = window.URL || window.webkitURL;
         var imageURL = window.URL.createObjectURL(file);
-        console.log(imageURL);
-        previevImg.src = imageURL;      
-		context.drawImage(previevImg, 0, 0, 640, 480);
+        // console.log(imageURL);
+
+        is_downloaded = true;
+        target.classList.add('none');
+        downloaded_img.src = imageURL;  
+        downloaded_img.classList.remove('none');
+		context.drawImage(downloaded_img, 0, 0, 640, 480);
    		}
 	}
 }
@@ -91,6 +106,11 @@ function file_handler(fileList)
 
 function filter_handler()
 {
+	if (is_video == false && is_downloaded == false)
+	{
+		alert("Please upload image.");
+		return;
+	}
 	if (this.classList.contains('selected_filter'))
 	{
 		this.classList.remove('selected_filter');
@@ -127,6 +147,9 @@ function photo_saver()
 			if (response == '1')
 			{
 				previevImg.removeAttribute("src");
+				previevImg.classList.add('none');
+				previev_txt.innerHTML = "Photo saved";
+				previev_txt.classList.remove("none");
 				saveButton.disabled = true;
 				saveButton.classList.add('disabled');
 			}

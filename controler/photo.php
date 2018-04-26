@@ -40,7 +40,7 @@ imagecopy($gd_photo, $gd_filter, 0, 0, 0, 0, imagesx($gd_filter), imagesy($gd_fi
 // imagedestroy($gd_filter);
 
 
-ob_start ();
+ob_start();
 	imagepng($gd_photo);
 	$image_data = ob_get_contents(); 	
 ob_end_clean();

@@ -18,15 +18,23 @@ if ($_SESSION["logged_in_user"] == "")
 <div id="photo_wrap">
 	<div id="photo_section">
 		<div id="camera_wrap">
-			<img id="overlay" class="none" src="./img/1.png">
+			<img id="overlay" width="640" height="480" class="none" src="./img/1.png">
+			<img id="downloaded_img" width="640" height="480" class="none" src="">
+			<div id="target" class="none">
+				<p>You can drag an image file here</p>
+				<p>or upload manualy (suported only 640*480 png)</p>
+				<input type="file" accept="image/*" id="file_input">
+			</div>
 			<video id="player" width="640" height="480" video id="" autoplay></video>
 			<canvas id="canvas" width="640" height="480"></canvas>
 		</div>
-		<input type="file" accept="image/*" id="file_input">
-		<div id="target">You can drag an image file here</div>
+		
+		
 			<div id="previev_section">
-				<!-- <canvas id="previev"  width="320" height="240"></canvas> -->
-				<img id="previev_img" style="width: 320px; height: 240px; background-color: grey">
+				<div class="previev_box">
+					<img id="previev_img" class="none">
+					<p id="previev_txt">Previev</p>
+				</div>
 				<div id="previev_btn">
 					<button id="capture" disabled="true" class="disabled">Take photo</button>
 					<button id="save_picture_btn" disabled="true" class="disabled">Save photo</button>

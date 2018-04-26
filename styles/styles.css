@@ -230,21 +230,12 @@ width: 100px;
 	justify-content: space-between;
 }
 
-#photo_section
-{
-	background-color: #c3c3c32b;
-	border-radius: 10px;
-	width: 48%;
-	height: 800px;
-	margin: 5px;
-}
-
 #filter_section
 {
 	background-color: #c3c3c32b;
 	border-radius: 10px;
 	width: 48%;
-	height: 800px;
+	height: 80vmin;
 	margin: 5px;
 }
 
@@ -253,7 +244,17 @@ width: 100px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-color: #c3c3c32b;
+	border-radius: 10px;
+	width: 72vmin;
+	height: 82vmin;
+	margin: 5px;
 }
+
+/*#camera_wrap
+{
+	width: 90%;
+}*/
 
 #player
 {
@@ -265,12 +266,69 @@ width: 100px;
     transform: scaleX(-1);
 }
 
+#target
+{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 64vmin;
+    height: 48vmin;
+    background-color: grey;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+
+#downloaded_img
+{
+	width: 64vmin;
+    height: 48vmin;
+    background-color: grey;
+    border-radius: 7px;
+    margin-top: 20px;
+}
+
+#target p
+{
+	font-family: "Open Sans", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #c7c7c7;
+}
+
 #previev_section
 {
 	width: 90%;
 	margin-top: 20px;
 	display: flex;
 	flex-direction: row;
+}
+
+.previev_box
+{
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	width: 32vmin;
+    height: 24vmin;
+	background-color: grey;
+	border-radius: 5px;
+}
+
+.previev_box p
+{
+	font-family: "Open Sans", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #c7c7c7;
+}
+
+#previev_img
+{
+	width: 32vmin;
+    height: 24vmin;
+	border-radius: 5px;
 }
 
 #overlay
@@ -280,6 +338,7 @@ width: 100px;
 	position: absolute;
 	margin-top: 20px;
 	z-index: 1;
+	border-radius: 10px;
 }
 
 #canvas
@@ -313,9 +372,10 @@ width: 100px;
 
 #filter_section img
 {
-	width: 28%;
+	width: 16vmin;
+	height: 12vmin;
 	padding: 5px;
-	max-width: 220px;
+	/*max-width: 220px;*/
 }
 
 .selected_filter
@@ -438,7 +498,7 @@ width: 100px;
 
 .none
 {
-	display: none;
+	display: none !important;
 }
 
 .disabled
