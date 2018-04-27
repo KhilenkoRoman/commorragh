@@ -192,13 +192,3 @@ filters.forEach(function(elem) {
 
 
 
-
-
-
-
-
-
-
-
-
-

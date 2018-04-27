@@ -42,7 +42,7 @@ session_start();
 	</a>
 
 	<?php endif; ?>
-	<a href="">
+	<a href="./galery.php">
 	<div class="menu_item">
 		<div class="line"></div>
 		<p>Galery</p>

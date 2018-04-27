@@ -16,7 +16,7 @@ $overlayPath = $_POST[overlay];
 $photo = preg_replace("/^.+base64,/", "", $_POST['photo']);
 $photo = str_replace(' ','+',$photo);
 $photo = base64_decode($photo); 
-file_put_contents("currentBG1.png", $photo);
+// file_put_contents("currentBG1.png", $photo);
 
 $gd_photo = imagecreatefromstring($photo);
 $gd_filter = imagecreatefrompng($overlayPath);
@@ -44,6 +44,8 @@ ob_start();
 	imagepng($gd_photo);
 	$image_data = ob_get_contents(); 	
 ob_end_clean();
+
+// $image_data = base64_encode($image_data)
 
 echo "data:image/png;base64,".base64_encode($image_data);
 // var_dump($image_data);
