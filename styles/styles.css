@@ -420,6 +420,7 @@ width: 100px;
     color: grey;
     border-radius: 5px;
     align-self: center;
+    margin-right: 5px;
 }
 
 
@@ -432,7 +433,7 @@ width: 100px;
 .coments_wrap
 {
 	width: 70%;
-	margin-left: 10px;
+	margin-left: 7%;
 }
 
 .comments

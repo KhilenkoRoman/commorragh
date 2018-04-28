@@ -6,7 +6,6 @@ session_start();
 	<title>Commorragh</title>
 	<meta charset="utf-8">
     <link href="styles/styles.css" rel="stylesheet">
-    <script src="script.js"></script>
 
 </head>
 <body>
