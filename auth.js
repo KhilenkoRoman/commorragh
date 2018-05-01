@@ -18,6 +18,7 @@ function register(elem)
 			email.classList.remove('unvalid');
 			pwd.classList.remove('unvalid');
 			var response = xmlhttp.responseText;
+			console.log(response);
 			if (response == "email_exist")
 			{
 				email_error.classList.remove('none');
@@ -38,6 +39,7 @@ function register(elem)
 			}
 			if (response == "1")
 			{
+				alert("thx for registration!")
 				window.location.replace("index.php");
 			}		
         }

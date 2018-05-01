@@ -4,6 +4,12 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/comments.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/users.php';
 session_start();
 
+if ($_POST["function"] == "get_more_pictures")
+{
+	echo get_pictures($_POST["page"]);
+	echo can_load($_POST["page"]);
+}
+
 function get_pictures($page)
 {
 	$page = (int)$page;
@@ -13,6 +19,7 @@ function get_pictures($page)
 
 	$pictures = picture_from_db(($page - 1)*5);
 
+	// тупит 
 	// var_dump($pictures);
 
 	foreach ($pictures as $picture)
@@ -52,5 +59,63 @@ function get_pictures($page)
 		echo '</div>	
 		</div>';
 	}
+}
+
+function pagination($page)
+{
+	$page = (int)$page;
+	if ($page == NULL)
+		$page = 1;
+
+	$pic_qty = (int)picture_qty_from_db()["COUNT(id_pic)"];
+	$pages_qty = ceil($pic_qty / 5);
+
+	if ($page == 1)
+	{
+		echo '<a disabled="true"><i class="fas fa-angle-left disabled"></i></a>';
+	}
+	else
+	{
+		echo '<a href="./galery.php?pg='.($page - 1).'"><i class="fas fa-angle-left"></i></a>';
+	}
+
+	for ($i=1; $i <= $pages_qty; $i++)
+	{
+		if ($i == $page)
+		{
+			echo '<a disabled="true" class="current">'.$i.'</a>';
+		}
+		else
+		{
+			echo '<a href="./galery.php?pg='.($i).'">'.$i.'</a>';
+		}
+		
+	}
+	
+	if ($page == $pages_qty)
+	{
+		echo '<a  disabled="true"><i class="fas fa-angle-right disabled"></i></a>';
+	}
+	else
+	{
+		echo '<a href="./galery.php?pg='.($page + 1).'"><i class="fas fa-angle-right"></i></a>';
+	}
+}
+
+function can_load($page)
+{
+	$page = (int)$page;
+	if ($page == NULL)
+		$page = 1;
+
+
+	$result = can_load_pictures_from_db($page * 5);
+	if ($result)
+	{
+		echo '<div class="load_more">
+		<p id="load_more_btn" onclick="load_more(this)">Load '.count($result).' more pictures</p>
+		</div>';
+	}
+	// var_dump(count($result));
 }
 ?>

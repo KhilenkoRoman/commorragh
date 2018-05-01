@@ -1,11 +1,6 @@
 <?php
-session_start();
 require_once('controler/galery.php');
-// if ($_SESSION["logged_in_user"] == "")
-// 	header('Location: ./index.php');
 ?>
-
-<!-- get_pictures($_GET[pg]) -->
 <html>
 <head>
 	<title>Galery</title>
@@ -22,12 +17,11 @@ require_once('controler/galery.php');
 	<div class="galery">
 		<?php get_pictures($_GET[pg]) ?>
 	</div>
+	<?php can_load($_GET[pg]) ?>
 </div>
 <!-- main end -->
 <div class="pagination">
-		<a href=""><i class="fas fa-angle-left"></i></a>
-		<a href="">1</a>
-		<a href=""><i class="fas fa-angle-right"></i></a>	
+	<?php pagination($_GET[pg]) ?>			
 </div>
 
 

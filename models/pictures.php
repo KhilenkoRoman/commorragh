@@ -14,7 +14,8 @@ function picture_to_db($id_user, $pic)
 
 function picture_from_db($start)
 {
-	$sql = "SELECT * FROM pictures ORDER BY 'date_creation' LIMIT 5 OFFSET ".$start;
+	$start = (int)$start;
+	$sql = "SELECT * FROM pictures ORDER BY date_creation DESC LIMIT 5 OFFSET ".$start;
 	$array = array();
 	$result = sql_req($sql, $array);
 	if ($result)
@@ -23,3 +24,26 @@ function picture_from_db($start)
 		return false;
 }
 
+function picture_qty_from_db()
+{
+	$start = (int)$start;
+	$sql = "SELECT COUNT(id_pic) FROM pictures";
+	$array = array();
+	$result = sql_req($sql, $array);
+	if ($result[0])
+		return ($result[0]);
+	else
+		return false;
+}
+
+function can_load_pictures_from_db($start)
+{
+	$start = (int)$start;
+	$sql = "SELECT id_pic FROM pictures LIMIT 5 OFFSET ".$start;
+	$array = array();
+	$result = sql_req($sql, $array);
+	if ($result)
+		return ($result);
+	else
+		return false;
+}

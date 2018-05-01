@@ -1,3 +1,5 @@
+var page = 0;
+
 function expand_coment(item)
 {
 	// console.log(item);
@@ -40,7 +42,7 @@ function comment_send(item)
 			coment_area.classList.toggle('i_deployed');
 			if (response != "ERROR")
 			{
-				console.log(comments);
+				// console.log(comments);
 				var com_el = document.createElement("div");
 				com_el.classList.add('comment');
 				comments.insertBefore(com_el,comments.firstChild);
@@ -59,9 +61,42 @@ function comment_send(item)
     xmlhttp.open("POST", "controler/save_comment.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("gal_id_user=" + gal_id_user + "&gal_id_pic=" + gal_id_pic + "&text=" + text.value);
-
-	
-	// console.log(gal_id_user);
-	// console.log(gal_id_pic);
 }
+
+function load_more(item)
+{
+	const galery_elem = document.getElementsByClassName("galery")[0];
+
+	if (page == 0)
+	{
+		page = document.getElementsByClassName("current")[0].innerHTML;
+		page = parseInt(page) + 1;
+	}	
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			var response = xmlhttp.responseText;
+
+			document.getElementsByClassName("load_more")[0].remove();
+			galery_elem.innerHTML += response;
+			page = parseInt(page) + 1;
+        }
+	};
+    xmlhttp.open("POST", "controler/galery.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("function=get_more_pictures&page=" + page);
+}
+
+
+
+
+
+
+
+
+
+
+
 
