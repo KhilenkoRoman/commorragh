@@ -70,6 +70,11 @@ function pagination($page)
 	$pic_qty = (int)picture_qty_from_db()["COUNT(id_pic)"];
 	$pages_qty = ceil($pic_qty / 5);
 
+	// $pages_qty отображает реальное кол-во страниц
+	// $pages_qty = 100;
+	// $page = 98;
+
+	// prev
 	if ($page == 1)
 	{
 		echo '<a disabled="true"><i class="fas fa-angle-left disabled"></i></a>';
@@ -78,20 +83,41 @@ function pagination($page)
 	{
 		echo '<a href="./galery.php?pg='.($page - 1).'"><i class="fas fa-angle-left"></i></a>';
 	}
+	// prev
 
-	for ($i=1; $i <= $pages_qty; $i++)
+	if ($pages_qty < 9)
 	{
-		if ($i == $page)
+		for ($i=1; $i <= $pages_qty; $i++)
 		{
-			echo '<a disabled="true" class="current">'.$i.'</a>';
+			if ($i == $page)
+			{
+				echo '<a disabled="true" class="current">'.$i.'</a>';
+			}
+			else
+			{
+				echo '<a href="./galery.php?pg='.($i).'">'.$i.'</a>';
+			}
 		}
-		else
-		{
-			echo '<a href="./galery.php?pg='.($i).'">'.$i.'</a>';
-		}
-		
 	}
+	else
+	{
+		echo '<a href="./galery.php?pg=1">1</a>';
+		echo '<a disabled="true"> .. </a>';
+
+		echo '<a href="./galery.php?pg='.($page - 1).'">'.($page - 1).'</a>';
+		echo '<a disabled="true" class="current">'.$page.'</a>';
+		echo '<a href="./galery.php?pg='.($page + 1).'">'.($page + 1).'</a>';
+
+		if ($page != $pages_qty - 1)
+		{
+			echo '<a disabled="true"> .. </a>';
+			echo '<a href="./galery.php?pg='.$pages_qty.'">'.$pages_qty.'</a>';
+		}
+	}
+
 	
+	
+	// next
 	if ($page == $pages_qty)
 	{
 		echo '<a  disabled="true"><i class="fas fa-angle-right disabled"></i></a>';
@@ -100,6 +126,7 @@ function pagination($page)
 	{
 		echo '<a href="./galery.php?pg='.($page + 1).'"><i class="fas fa-angle-right"></i></a>';
 	}
+	// next
 }
 
 function can_load($page)

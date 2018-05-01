@@ -21,7 +21,7 @@ require_once('controler/galery.php');
 </div>
 <!-- main end -->
 <div class="pagination">
-	<?php pagination($_GET[pg]) ?>			
+	<?php pagination($_GET[pg]) ?>		
 </div>
 
 
