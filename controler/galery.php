@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/pictures.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/comments.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/users.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/likes.php';
 session_start();
 
 if ($_POST["function"] == "get_more_pictures")
@@ -9,6 +10,17 @@ if ($_POST["function"] == "get_more_pictures")
 	echo get_pictures($_POST["page"]);
 	echo can_load($_POST["page"]);
 }
+
+if ($_POST["function"] == "add_like")
+{
+	add_like($_POST["id_pic"], $_POST["id_user"]);
+}
+
+if ($_POST["function"] == "remove_like")
+{
+	remove_like($_POST["id_pic"], $_POST["id_user"]);
+}
+
 
 function get_pictures($page)
 {
@@ -18,7 +30,7 @@ function get_pictures($page)
 
 
 	$pictures = picture_from_db(($page - 1)*5);
-
+	// $_SESSION["logged_in_user"]);
 	// тупит 
 	// var_dump($pictures);
 
@@ -27,9 +39,22 @@ function get_pictures($page)
 		echo '<div class="g_item">
 			<div class="none gal_id_pic">'.$picture[id_pic].'</div>
 			<div class="photo">
-				<img src="'.$picture[pic].'">
-				<i class="fas fa-heart like_btn"></i>
-			</div>
+				<img src="'.$picture[pic].'">';
+
+		if ($_SESSION["logged_in_user"])
+		{
+			$like = get_likes_from_db($_SESSION["logged_in_user"], $picture[id_pic]);
+			if ($like[0]["COUNT(id_like)"] == 0)
+			{
+				echo '<i class="fas fa-heart like_btn" onclick="like_func(this)"></i>';
+			}
+			else
+			{
+				echo '<i class="fas fa-heart like_btn liked" onclick="like_func(this)"></i>';
+			}
+		}
+
+		echo '</div>
 			<div class="coments_wrap" >
 			<div class="comments">';
 
@@ -145,4 +170,30 @@ function can_load($page)
 	}
 	// var_dump(count($result));
 }
+
+function add_like($id_pic, $id_user)
+{
+	if (add_like_to_db($id_user, $id_pic))
+	{
+		echo "add_like_sucsess";
+	}
+	else
+	{
+		echo "ERROR";
+	}
+	
+}
+
+function remove_like($id_pic, $id_user)
+{
+	if (remove_like_from_db($id_user, $id_pic))
+	{
+		echo "remove_like_sucsess";
+	}
+	else
+	{
+		echo "ERROR";
+	}	
+}
+
 ?>

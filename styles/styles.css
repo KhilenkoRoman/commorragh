@@ -388,6 +388,10 @@ width: 100px;
 	width: 320px;
     height: 240px;
 	border-radius: 5px;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .photo
@@ -403,7 +407,12 @@ width: 100px;
     top: -40px;
     left: 280px;
     font-size: 30px;
-    color: red;
+    color: #694e4e73;
+}
+
+.liked
+{
+    color: #ff2c2cb0;
 }
 
 .g_item
@@ -541,6 +550,63 @@ width: 100px;
     cursor: pointer;
 }
 
+.users_data
+{
+	display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    margin-top: 100px;
+    width: 90%;
+    font-family: "Open Sans", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.users_data input
+{
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 7px;
+    outline:none;
+}
+
+.users_data button
+{
+	margin-top: 10px;
+    width: 120px;
+    height: 40px;
+    font: 20px sans-serif;
+    color: #101010;
+    border-radius: 5px;
+    align-self: center;
+}
+
+.users_data form
+{
+	margin-top: 20px;
+}
+
+#comments_on_email
+{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-top: 10px;
+}
+
+#comments_on_email input
+{
+	margin-top: 0px;
+	margin-left: 15px;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 7px;
+    outline:none;
+}
 
 /*^*/
 /*|*/

@@ -89,7 +89,41 @@ function load_more(item)
 	xmlhttp.send("function=get_more_pictures&page=" + page);
 }
 
+function like_func(item)
+{
+	var xmlhttp = new XMLHttpRequest();
+	const gal_id_user = document.getElementById('gal_id_user').innerHTML;
+	const gal_id_pic = item.parentNode.parentNode.getElementsByClassName('gal_id_pic')[0].innerHTML;
 
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			var response = xmlhttp.responseText;
+
+			if (response == "add_like_sucsess")
+			{
+				item.classList.add('liked');
+			}
+			if (response == "remove_like_sucsess")
+			{
+				item.classList.remove('liked');
+			}
+			console.log(response);
+        }
+	};
+
+	xmlhttp.open("POST", "controler/galery.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	if (item.classList.contains('liked'))
+	{
+		xmlhttp.send("function=remove_like&id_pic=" + gal_id_pic + "&id_user=" + gal_id_user);
+	}
+	else
+	{
+		xmlhttp.send("function=add_like&id_pic=" + gal_id_pic + "&id_user=" + gal_id_user);
+	}
+}
 
 
 

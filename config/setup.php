@@ -25,6 +25,7 @@ try {
 	name VARCHAR(30) NOT NULL,
 	date_creation TIMESTAMP,
 	active BOOLEAN DEFAULT 0 NOT NULL,
+	comments_to_mail BOOLEAN DEFAULT 1 NOT NULL,
 	token VARCHAR(255))";
 	$pdo->exec($sql);
 	echo "table users created sucdesfuly<br>";

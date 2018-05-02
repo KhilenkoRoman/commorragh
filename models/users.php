@@ -56,6 +56,17 @@ function activate_user($email)
 		return false;
 }
 
+function subscribe_change($id_user, $subscribe)
+{
+	$sql = "UPDATE users SET comments_to_mail = :subscribe WHERE id_user= :id_user ";
+	$array = array('subscribe' => $subscribe, 'id_user' => $id_user);
+	$result = sql_send($sql, $array);
+	if ($result == true)
+		return true;
+	else
+		return false;
+}
+
 function user_update_token($email, $token)
 {
 	$sql = "UPDATE users SET token = :token WHERE email= :email ";
@@ -71,6 +82,17 @@ function user_update_pwd($email, $pwd)
 {
 	$sql = "UPDATE users SET password = :pwd , token = NULL WHERE email= :email ";
 	$array = array('email' => $email, 'pwd' => $pwd);
+	$result = sql_send($sql, $array);
+	if ($result == true)
+		return true;
+	else
+		return false;
+}
+
+function user_update_email($id_user, $email)
+{
+	$sql = "UPDATE users SET email = :email WHERE id_user= :id_user ";
+	$array = array('id_user' => $id_user, 'email' => $email);
 	$result = sql_send($sql, $array);
 	if ($result == true)
 		return true;

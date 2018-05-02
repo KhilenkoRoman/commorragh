@@ -15,7 +15,7 @@ $actual_link = $_SERVER[REQUEST_URI];
 			</div>
 		<?php else : ?>
 			<div id="auth">
-				<a href="">User: <span><?php echo $user['name'] ?></span></a>
+				<a href="user.php">User: <span><?php echo $user['name'] ?></span></a>
             	<a href="controler/logout.php?link=<?php echo $actual_link ?>" style="margin-left: 25px;">Logout</a></li>
             </div>
         <?php endif; ?>
