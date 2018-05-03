@@ -18,7 +18,7 @@ if ($_SESSION["logged_in_user"] == "")
 <div id="photo_wrap">
 	<div id="photo_section">
 		<div id="camera_wrap">
-			<img id="overlay" width="640" height="480" class="none" src="./img/1.png">
+			<img id="overlay" width="640" height="480" class="none" src="">
 			<img id="downloaded_img" width="640" height="480" class="none" src="">
 			<div id="target" class="none">
 				<p>You can drag an image file here</p>
@@ -36,7 +36,8 @@ if ($_SESSION["logged_in_user"] == "")
 					<p id="previev_txt">Previev</p>
 				</div>
 				<div id="previev_btn">
-					<button id="capture" disabled="true" class="disabled">Take photo</button>
+					<button id="capture">Take photo</button>
+					<button id="capture_timer">Timer 5s</button>
 					<button id="save_picture_btn" disabled="true" class="disabled">Save photo</button>
 				</div>
 			</div>

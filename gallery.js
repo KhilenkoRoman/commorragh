@@ -42,7 +42,7 @@ function comment_send(item)
 			coment_area.classList.toggle('i_deployed');
 			if (response != "ERROR")
 			{
-				// console.log(comments);
+				console.log(response);
 				var com_el = document.createElement("div");
 				com_el.classList.add('comment');
 				comments.insertBefore(com_el,comments.firstChild);

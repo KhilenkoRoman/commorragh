@@ -4,7 +4,6 @@
 		header('Location: ./index.php');
 	require_once $_SERVER['DOCUMENT_ROOT'].'/commorragh/models/users.php';
 	$user = get_user_by_id($_SESSION["logged_in_user"]);
-	var_dump($user);
 ?>
 <html>
 <head>
@@ -22,19 +21,22 @@
 	<div class="users_data">
 		<form onsubmit="change_email(this)">
 			<p>Change email</p>
-			<input type="email" id="presonal_email" value="<?php echo $user['email'] ?>">
+			<input type="email" id="presonal_email" value="<?php echo $user['email'] ?>" class="" required>
 			<button>Submit</button>
+			<p id="email_error" class="error_text none">email_error</p>
 		</form>
 		<form onsubmit="change_name(this)">
 			<p>Change name</p>
-			<input id="presonal_name" value="<?php echo $user['name'] ?>">
+			<input id="presonal_name" value="<?php echo $user['name'] ?>" class="" required>
 			<button>Submit</button>
+			<p id="name_error" class="error_text none">name_error</p>
 		</form>
 		<form onsubmit="change_pass(this)">
 			<p>Change password</p>
-			<input type="password" id="old_pass_change" placeholder="Old password"><br>
-			<input type="password" id="new_pass_change" placeholder="New password">
+			<input type="password" id="old_pass_change" placeholder="Old password" class="" required minlength="6"><br>
+			<input type="password" id="new_pass_change" placeholder="New password" class="" required minlength="6">
 			<button>Submit</button>
+			<p id="password_error" class="error_text none">password_error</p>
 		</form>
 		<div id="comments_on_email">
 			<p>Email on comment</p>

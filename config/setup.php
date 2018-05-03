@@ -31,7 +31,7 @@ try {
 	echo "table users created sucdesfuly<br>";
 
   // Creating admin user
-	$password = hash('sha512', 'admin');
+	$password = hash('sha512', 'qweqwe');
 	$sql = "INSERT INTO users (email, name, password, active)
 	VALUES ('admin@admin.com', 'admin', '$password', '1')";
 	$pdo->exec($sql);

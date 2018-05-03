@@ -37,6 +37,26 @@ if ($_POST["function"] == "change_email")
 	change_email($_POST["id_user"], $_POST["email"]);
 }
 
+if ($_POST["function"] == "change_name")
+{
+	if ($_POST['id_user'] == "" || $_POST['name'] == "")
+	{
+		echo ("ERROR\n");
+		return (0);
+	}
+	change_name($_POST["id_user"], $_POST["name"]);
+}
+
+if ($_POST["function"] == "change_password")
+{
+	if ($_POST['id_user'] == "" || $_POST['old_pwd'] == "" || $_POST['new_pwd'] == "")
+	{
+		echo ("ERROR\n");
+		return (0);
+	}
+	change_password($_POST["id_user"], $_POST["old_pwd"], $_POST["new_pwd"]);
+}
+
 
 function change_email($id_user, $email)
 {
@@ -63,7 +83,48 @@ function change_email($id_user, $email)
 		echo "1";
 	else
 		echo "ERROR DB";
-	
+}
+
+function change_name($id_user, $name)
+{
+	if (strlen($name) > 30)
+	{
+		echo ("long_name");
+		return;
+	}
+	$name = htmlspecialchars($name);
+	if (user_update_name($id_user, $name))
+		echo "1";
+	else
+		echo "ERROR";
+}
+
+function change_password($id_user, $old_pwd, $new_pwd)
+{
+	$user = get_user_by_id($id_user);
+	$old_hash = hash('sha512', $old_pwd);
+
+	if (strlen($new_pwd) > 6 || strlen($old_pwd) > 6)
+	{
+		echo "short";
+		return ;
+	}
+	if ($old_pwd == $new_pwd)
+	{
+		echo "same_pwd";
+		return ;		
+	}
+	if ($user["password"] != $old_hash)
+	{
+		echo "wrong_password";
+		return ;
+	}
+
+	$new_hash = hash('sha512', $new_pwd);
+	if (user_update_pwd_by_id($id_user, $new_hash))
+		echo "1";
+	else
+		echo "ERROR";
 }
 
 

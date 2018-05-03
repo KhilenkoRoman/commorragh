@@ -11,7 +11,7 @@ if ($_POST['email'] == "" || $_POST['pwd'] == "")
 	return (0);
 }
 $password = hash('sha512', $_POST['pwd']);
-picture_to_db($_POST['email'], $password);
+user_update_pwd($_POST['email'], $password);
 echo('1');
 return;
 

@@ -8,6 +8,7 @@ const context = canvas.getContext('2d');
 context.translate(640, 0);
 context.scale(-1, 1);
 const captureButton = document.getElementById('capture');
+const captureButton_timer = document.getElementById('capture_timer');
 const saveButton = document.getElementById('save_picture_btn');
 const filters = document.querySelectorAll('.filter');
 const overlay = document.getElementById('overlay');
@@ -39,6 +40,7 @@ function videoError(error)
 //image from webcam
 
 captureButton.addEventListener("click", capture);
+captureButton_timer.addEventListener("click", timer_capture);
 
 function capture()
 {
@@ -70,6 +72,28 @@ function capture()
 	xmlhttp.open("POST", "controler/photo.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("overlay=" + overlay.src + "&photo=" + image);
+}
+
+function timer_capture()
+{
+	var counter = 5;
+
+	captureButton.disabled = true;
+	captureButton.classList.add('disabled');
+
+	setInterval(function() {
+	counter--;
+	if (counter >= 0) {
+		captureButton_timer.innerHTML = "Timer "+counter+"s";
+	}
+	if (counter === 0) {
+		clearInterval(counter);
+		capture();
+		captureButton_timer.innerHTML = "Timer 5s";
+		captureButton.disabled = false;
+		captureButton.classList.remove('disabled');
+	}
+	}, 1000);
 }
 
 //image from webcam end
@@ -115,8 +139,9 @@ function filter_handler()
 	{
 		this.classList.remove('selected_filter');
 		overlay.classList.add('none');
-		captureButton.disabled = true;
-		captureButton.classList.add('disabled');
+		overlay.src = "";
+		// captureButton.disabled = true;
+		// captureButton.classList.add('disabled');
 
 	}		
 	else
@@ -127,8 +152,8 @@ function filter_handler()
 		this.classList.add('selected_filter');
 		overlay.classList.remove('none');
 		overlay.src = this.src;
-		captureButton.disabled = false;
-		captureButton.classList.remove('disabled');
+		// captureButton.disabled = false;
+		// captureButton.classList.remove('disabled');
 	}
 }
 

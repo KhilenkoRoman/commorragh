@@ -608,6 +608,16 @@ width: 100px;
     outline:none;
 }
 
+.error_text
+{
+	font-family: "Open Sans", "Helvetica Neue", Verdana, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: red;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
 /*^*/
 /*|*/
 /*|*/

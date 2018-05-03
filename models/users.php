@@ -99,3 +99,40 @@ function user_update_email($id_user, $email)
 	else
 		return false;
 }
+
+function user_update_name($id_user, $name)
+{
+	$sql = "UPDATE users SET name = :name WHERE id_user= :id_user ";
+	$array = array('id_user' => $id_user, 'name' => $name);
+	$result = sql_send($sql, $array);
+	if ($result == true)
+		return true;
+	else
+		return false;
+}
+
+function user_update_pwd_by_id($id_user, $pwd)
+{
+	$sql = "UPDATE users SET password = :pwd WHERE id_user= :id_user ";
+	$array = array('id_user' => $id_user, 'pwd' => $pwd);
+	$result = sql_send($sql, $array);
+	if ($result == true)
+		return true;
+	else
+		return false;
+}
+
+function get_user_by_pic_id($id_pic)
+{
+	$sql = "SELECT users.id_user, name, email, comments_to_mail FROM users INNER JOIN pictures ON users.id_user=pictures.id_user WHERE pictures.id_pic=:id_pic";
+
+	$array = array('id_pic' => $id_pic);
+	$result = sql_req($sql, $array);
+	if ($result)
+		return ($result);
+	else
+		return false;
+}
+
+
+
