@@ -21,20 +21,20 @@
 	<div class="users_data">
 		<form onsubmit="change_email(this)">
 			<p>Change email</p>
-			<input type="email" id="presonal_email" value="<?php echo $user['email'] ?>" class="" required>
+			<input type="email" id="presonal_email" value="<?php echo $user['email'] ?>" class="" required maxlength="200">
 			<button>Submit</button>
 			<p id="email_error" class="error_text none">email_error</p>
 		</form>
 		<form onsubmit="change_name(this)">
 			<p>Change name</p>
-			<input id="presonal_name" value="<?php echo $user['name'] ?>" class="" required>
+			<input id="presonal_name" value="<?php echo $user['name'] ?>" class="" required maxlength="30">
 			<button>Submit</button>
 			<p id="name_error" class="error_text none">name_error</p>
 		</form>
 		<form onsubmit="change_pass(this)">
 			<p>Change password</p>
-			<input type="password" id="old_pass_change" placeholder="Old password" class="" required minlength="6"><br>
-			<input type="password" id="new_pass_change" placeholder="New password" class="" required minlength="6">
+			<input type="password" id="old_pass_change" placeholder="Old password" class="" required minlength="6" maxlength="100"><br>
+			<input type="password" id="new_pass_change" placeholder="New password" class="" required minlength="6" maxlength="100">
 			<button>Submit</button>
 			<p id="password_error" class="error_text none">password_error</p>
 		</form>

@@ -63,6 +63,12 @@ function change_email(elem)
 				email_error.innerHTML = "Wrong email";
 				email_elem.classList.add('unvalid');
 			}
+			if (response == "long_email")
+			{
+				email_error.classList.remove('none');
+				email_error.innerHTML = "Email is too long";
+				email_elem.classList.add('unvalid');
+			}		
 			if (response == 1)
 				alert("email changed");
         }
@@ -146,6 +152,12 @@ function change_pass(elem)
 				password_error.classList.remove('none');
 				password_error.innerHTML = "Some error, just panic";
 			}
+			if (response == "long_pwd")
+			{
+				password_error.classList.remove('none');
+				password_error.innerHTML = "Password is too long";
+			}
+			
 			if (response == 1)
 				alert("password changed");
         }

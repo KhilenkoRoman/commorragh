@@ -31,6 +31,13 @@ function getVideo(stream)
 function videoError(error)
 {
 	is_video = false;
+
+	captureButton.disabled = true;
+	captureButton.classList.add('disabled');
+
+	captureButton_timer.disabled = true;
+	captureButton_timer.classList.add('disabled');
+
 	player.classList.add('none');
 	target.classList.remove('none');
 }
@@ -80,6 +87,8 @@ function timer_capture()
 
 	captureButton.disabled = true;
 	captureButton.classList.add('disabled');
+	captureButton_timer.disabled = true;
+	captureButton_timer.classList.add('disabled');
 
 	setInterval(function() {
 	counter--;
@@ -92,6 +101,8 @@ function timer_capture()
 		captureButton_timer.innerHTML = "Timer 5s";
 		captureButton.disabled = false;
 		captureButton.classList.remove('disabled');
+		captureButton_timer.disabled = false;
+	captureButton_timer.classList.remove('disabled');
 	}
 	}, 1000);
 }
@@ -118,6 +129,13 @@ function file_handler(fileList)
         // console.log(imageURL);
 
         is_downloaded = true;
+
+        captureButton.disabled = false;
+		captureButton.classList.remove('disabled');
+
+		captureButton_timer.disabled = false;
+		captureButton_timer.classList.remove('disabled');
+
         target.classList.add('none');
         downloaded_img.src = imageURL;  
         downloaded_img.classList.remove('none');

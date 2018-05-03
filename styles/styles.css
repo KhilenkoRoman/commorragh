@@ -656,4 +656,59 @@ width: 100px;
     border-radius: 0 0 10px 10px;
 }
 
+.users_data
+{
+	margin-left: 0px;
 }
+
+#save_picture_btn
+{
+	margin-bottom: 10px;
+}
+
+#previev_btn button
+{
+	font-size: 3vw;
+}
+
+#photo_section
+{
+	padding-bottom: 10px;
+}
+
+#target p
+{
+	font-size: 3vw;
+	margin-left: 20px;
+	margin-right: 10px;
+}
+
+#file_input
+{
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+
+}
+
+@media only screen and (max-width: 1300px)
+{
+
+#photo_wrap
+{
+	flex-direction: column;
+}
+
+#filter_section
+{
+	width: 97%;
+	height: 46vmin;
+}
+
+#photo_section
+{
+	width: 94vmin;
+}
+}
+

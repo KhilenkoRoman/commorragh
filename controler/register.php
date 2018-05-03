@@ -19,6 +19,24 @@ if(strlen($_POST['pwd']) < 6)
 	return;
 }
 
+if (strlen($_POST[email]) > 200)
+{
+	echo ("long_email");
+	return;
+}
+
+if (strlen($_POST['name']) > 30)
+{
+	echo ("long_name");
+	return;
+}
+
+if (strlen($_POST['pwd']) > 100)
+{
+	echo ("long_pwd");
+	return;
+}
+
 $regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
 if(preg_match($regex, strtolower($_POST[email])))
 {

@@ -60,6 +60,11 @@ if ($_POST["function"] == "change_password")
 
 function change_email($id_user, $email)
 {
+	if (strlen($email) > 200)
+	{
+		echo ("long_email");
+		return;
+	}
 	$regex = '/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/';
 	if(preg_match($regex, strtolower($email)))
 	{
@@ -101,6 +106,12 @@ function change_name($id_user, $name)
 
 function change_password($id_user, $old_pwd, $new_pwd)
 {
+	if (strlen($old_pwd) > 100 || strlen($new_pwd) > 100)
+	{
+		echo ("long_pwd");
+		return;
+	}
+
 	$user = get_user_by_id($id_user);
 	$old_hash = hash('sha512', $old_pwd);
 

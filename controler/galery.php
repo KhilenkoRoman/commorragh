@@ -126,14 +126,21 @@ function pagination($page)
 	}
 	else
 	{
-		echo '<a href="./galery.php?pg=1">1</a>';
-		echo '<a disabled="true"> .. </a>';
-
-		echo '<a href="./galery.php?pg='.($page - 1).'">'.($page - 1).'</a>';
+		if ($page > 2)
+		{
+			echo '<a href="./galery.php?pg=1">1</a>';
+			echo '<a disabled="true"> .. </a>';
+		}
+		if ($page != 1)
+		{
+			echo '<a href="./galery.php?pg='.($page - 1).'">'.($page - 1).'</a>';
+		}
 		echo '<a disabled="true" class="current">'.$page.'</a>';
-		echo '<a href="./galery.php?pg='.($page + 1).'">'.($page + 1).'</a>';
-
-		if ($page != $pages_qty - 1)
+		if ($page != $pages_qty)
+		{
+			echo '<a href="./galery.php?pg='.($page + 1).'">'.($page + 1).'</a>';
+		}
+		if ($page != $pages_qty - 1 && $page != $pages_qty)
 		{
 			echo '<a disabled="true"> .. </a>';
 			echo '<a href="./galery.php?pg='.$pages_qty.'">'.$pages_qty.'</a>';

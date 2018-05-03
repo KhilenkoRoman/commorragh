@@ -8,6 +8,7 @@ function register(elem)
 	var name = document.getElementById("r_name_inp");
 	var email_error = document.getElementById("email_error");
 	var pwd_error = document.getElementById("password_error");
+	var name_error = document.getElementById("name_error");
 
 	xmlhttp.onreadystatechange = function()
 	{
@@ -15,10 +16,19 @@ function register(elem)
 		{
 			email_error.classList.add('none');
 			pwd_error.classList.add('none');
+			name_error.classList.add('none');
 			email.classList.remove('unvalid');
 			pwd.classList.remove('unvalid');
+			name.classList.remove('unvalid');
 			var response = xmlhttp.responseText;
 			console.log(response);
+
+			if (response == "long_name")
+			{
+				name_error.classList.remove('none');
+				name_error.innerHTML = "Name is too long";
+				name.classList.add('unvalid');
+			}
 			if (response == "email_exist")
 			{
 				email_error.classList.remove('none');
@@ -31,10 +41,22 @@ function register(elem)
 				email_error.innerHTML = "Wrong email";
 				email.classList.add('unvalid');
 			}
+			if (response == "long_email")
+			{
+				email_error.classList.remove('none');
+				email_error.innerHTML = "Email is too long";
+				email.classList.add('unvalid');
+			}
 			if (response == "pwd_short")
 			{
 				pwd_error.classList.remove('none');
 				pwd_error.innerHTML = "Password should be greater than 5 chars";
+				pwd.classList.add('unvalid');
+			}
+			if (response == "long_pwd")
+			{
+				pwd_error.classList.remove('none');
+				pwd_error.innerHTML = "Password too long";
 				pwd.classList.add('unvalid');
 			}
 			if (response == "1")
@@ -48,6 +70,7 @@ function register(elem)
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("email=" + email.value + "&name=" + name.value + "&pwd=" + pwd.value);
 }
+
 
 function sign_in(elem)
 {

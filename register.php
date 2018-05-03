@@ -17,10 +17,11 @@ session_start();
 	<div id="register_wrap">
 		<form onsubmit="register(this)">
 			<h1>Registrarion</h1>
-			<div><input id="r_email_inp" type="email" name="email" placeholder="Email" required></div>
+			<div><input id="r_email_inp" type="email" name="email" placeholder="Email" required maxlength="200"></div>
 			<p id="email_error" class="none"></p>
-			<div><input id="r_name_inp" type="text" name="name" placeholder="Name" required></div>
-			<div><input id="r_pwd_inp" type="password" name="password" placeholder="Password" required minlength="6"></div>
+			<div><input id="r_name_inp" type="text" name="name" placeholder="Name" required maxlength="30"></div>
+			<p id="name_error" class="none"></p>
+			<div><input id="r_pwd_inp" type="password" name="password" placeholder="Password" required minlength="6" maxlength="100"></div>
 			<p id="password_error" class="none">wrong password</p>
 			<button type="submit" id="register_btm">Register</button>
 		</form>
