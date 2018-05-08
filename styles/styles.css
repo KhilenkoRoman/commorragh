@@ -618,6 +618,15 @@ width: 100px;
     margin-left: 30px;
 }
 
+.cross_btn
+{
+	position: relative;
+    top: -235px;
+    left: 260px;
+    font-size: 30px;
+    color: #f93e3e;
+}
+
 /*^*/
 /*|*/
 /*|*/

@@ -36,8 +36,8 @@ if ($_SESSION["logged_in_user"] == "")
 					<p id="previev_txt">Previev</p>
 				</div>
 				<div id="previev_btn">
-					<button id="capture">Take photo</button>
-					<button id="capture_timer">Timer 5s</button>
+					<button id="capture" disabled="true" class="disabled">Take photo</button>
+					<button id="capture_timer" disabled="true" class="disabled">Timer 5s</button>
 					<button id="save_picture_btn" disabled="true" class="disabled">Save photo</button>
 				</div>
 			</div>

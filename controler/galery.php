@@ -21,6 +21,11 @@ if ($_POST["function"] == "remove_like")
 	remove_like($_POST["id_pic"], $_POST["id_user"]);
 }
 
+if ($_POST["function"] == "remove_foto")
+{
+	remove_foto($_POST["id_pic"]);
+}
+
 
 function get_pictures($page)
 {
@@ -54,6 +59,11 @@ function get_pictures($page)
 			}
 		}
 
+		if ($picture['id_user'] == $_SESSION["logged_in_user"])
+		{
+			echo '<i class="fas fa-times cross_btn" onclick="remove_foto('.$picture['id_pic'].')"></i>';
+		}
+		
 		echo '</div>
 			<div class="coments_wrap" >
 			<div class="comments">';
@@ -203,4 +213,46 @@ function remove_like($id_pic, $id_user)
 	}	
 }
 
+function remove_foto($id_pic)
+{
+	$pic_data = get_picture_info_by_id($id_pic)[0];
+	// var_dump($pic_data);
+
+	if ($pic_data['id_user'] == $_SESSION["logged_in_user"])
+	{
+		if (remove_picture_from_db($pic_data['id_pic'], $_SESSION["logged_in_user"]))
+		{
+			echo "1";
+			return;
+		}
+		else
+		{
+			echo "ERROR_DB";
+			return ;
+		}
+	}
+	else
+	{
+		echo "ERROR_USER";
+		return ;
+	}
+}
+
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

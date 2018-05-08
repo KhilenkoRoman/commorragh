@@ -125,6 +125,29 @@ function like_func(item)
 	}
 }
 
+function remove_foto(id_pic)
+{
+	if (!confirm("Remove ?"))
+	{
+		return ;
+	}
+	// const elem = event.srcElement.parentElement.parentElement;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+		{
+			var response = xmlhttp.responseText;
+			if (response == 1)
+			{
+				location.reload();
+			}
+        }
+	};
+    xmlhttp.open("POST", "controler/galery.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("function=remove_foto&id_pic=" + id_pic);
+}
 
 
 

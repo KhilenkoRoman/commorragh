@@ -47,3 +47,27 @@ function can_load_pictures_from_db($start)
 	else
 		return false;
 }
+
+function get_picture_info_by_id($id_pic)
+{
+	$id_pic = (int)$id_pic;
+	$sql = "SELECT id_pic, id_user, date_creation FROM pictures WHERE id_pic = :id_pic";
+	$array = array('id_pic' => $id_pic);
+	$result = sql_req($sql, $array);
+	if ($result)
+		return ($result);
+	else
+		return false;
+}
+
+function remove_picture_from_db($id_pic, $id_user)
+{
+	$sql = "DELETE FROM pictures WHERE id_pic = :id_pic AND id_user = :id_user";
+	$array = array('id_pic' => $id_pic, 'id_user' => $id_user );
+	$result = sql_send($sql, $array);
+	if ($result == true)
+		return true;
+	else
+		return false;
+}
+

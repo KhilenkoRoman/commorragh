@@ -158,8 +158,10 @@ function filter_handler()
 		this.classList.remove('selected_filter');
 		overlay.classList.add('none');
 		overlay.src = "";
-		// captureButton.disabled = true;
-		// captureButton.classList.add('disabled');
+		captureButton.disabled = true;
+		captureButton.classList.add('disabled');
+		captureButton_timer.disabled = true;
+		captureButton_timer.classList.add('disabled');
 
 	}		
 	else
@@ -170,8 +172,10 @@ function filter_handler()
 		this.classList.add('selected_filter');
 		overlay.classList.remove('none');
 		overlay.src = this.src;
-		// captureButton.disabled = false;
-		// captureButton.classList.remove('disabled');
+		captureButton.disabled = false;
+		captureButton.classList.remove('disabled');
+		captureButton_timer.disabled = false;
+		captureButton_timer.classList.remove('disabled');
 	}
 }
 
